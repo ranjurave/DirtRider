@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"D:\\Unreal Projects\\DirtRider\\Source\\DirtRider\\DirtRider.Build.cs",
+		"D:\\Unreal Projects\\DirtRider\\Source\\DirtRider.Target.cs",
+		"D:\\Unreal Projects\\DirtRider\\Source\\DirtRiderEditor.Target.cs"
+	],
+	"EngineVersion": "4.27.2"
+}

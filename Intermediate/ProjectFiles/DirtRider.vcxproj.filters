@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\DirtRider.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{9B40923A-0E49-470A-9D2E-386A3E080A1D}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\DirtRider.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\DirtRiderEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{948CE11D-0F94-4D80-89C8-5E3798A6465F}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\DirtRider">
+      <UniqueIdentifier>{7AEFB1CA-5A7E-467D-B37A-10E690DAE21E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\DirtRider\DirtRider.Build.cs">
+      <Filter>Source\DirtRider</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\DirtRider\DirtRider.cpp">
+      <Filter>Source\DirtRider</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DirtRider\DirtRider.h">
+      <Filter>Source\DirtRider</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DirtRider\DirtRiderGameMode.cpp">
+      <Filter>Source\DirtRider</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DirtRider\DirtRiderGameMode.h">
+      <Filter>Source\DirtRider</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DirtRider\DirtRiderHud.cpp">
+      <Filter>Source\DirtRider</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DirtRider\DirtRiderHud.h">
+      <Filter>Source\DirtRider</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DirtRider\DirtRiderPawn.cpp">
+      <Filter>Source\DirtRider</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DirtRider\DirtRiderPawn.h">
+      <Filter>Source\DirtRider</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DirtRider\DirtRiderWheelFront.cpp">
+      <Filter>Source\DirtRider</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DirtRider\DirtRiderWheelFront.h">
+      <Filter>Source\DirtRider</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DirtRider\DirtRiderWheelRear.cpp">
+      <Filter>Source\DirtRider</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DirtRider\DirtRiderWheelRear.h">
+      <Filter>Source\DirtRider</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

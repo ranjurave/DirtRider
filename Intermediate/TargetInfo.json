@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "DirtRider",
+			"Path": "D:\\Unreal Projects\\DirtRider\\Source\\DirtRider.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "DirtRiderEditor",
+			"Path": "D:\\Unreal Projects\\DirtRider\\Source\\DirtRiderEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

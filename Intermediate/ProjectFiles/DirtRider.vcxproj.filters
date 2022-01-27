@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\DirtRider.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{9B40923A-0E49-470A-9D2E-386A3E080A1D}</UniqueIdentifier>
+      <UniqueIdentifier>{B8027E7A-928E-4BB4-ADBE-299A4FD05757}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\DirtRider.Target.cs">
       <Filter>Source</Filter>
@@ -11,8 +11,10 @@
     <None Include="..\..\Source\DirtRiderEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.gitattributes" />
+    <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{948CE11D-0F94-4D80-89C8-5E3798A6465F}</UniqueIdentifier>
+      <UniqueIdentifier>{E300FCB1-1A71-41C3-9B54-2C0F21604606}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,7 +32,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\DirtRider">
-      <UniqueIdentifier>{7AEFB1CA-5A7E-467D-B37A-10E690DAE21E}</UniqueIdentifier>
+      <UniqueIdentifier>{914E7949-FEB7-4356-8E0A-44465D2C56B9}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\DirtRider\DirtRider.Build.cs">
       <Filter>Source\DirtRider</Filter>
@@ -69,6 +71,12 @@
       <Filter>Source\DirtRider</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\DirtRider\DirtRiderWheelRear.h">
+      <Filter>Source\DirtRider</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DirtRider\JLTVTruck.cpp">
+      <Filter>Source\DirtRider</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DirtRider\JLTVTruck.h">
       <Filter>Source\DirtRider</Filter>
     </ClInclude>
   </ItemGroup>

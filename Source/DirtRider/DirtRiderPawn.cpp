@@ -16,19 +16,6 @@
 #include "Materials/Material.h"
 #include "GameFramework/Controller.h"
 
-#ifndef HMD_MODULE_INCLUDED
-#define HMD_MODULE_INCLUDED 0
-#endif
-
-// Needed for VR Headset
-#if HMD_MODULE_INCLUDED
-#include "IXRTrackingSystem.h"
-#include "HeadMountedDisplayFunctionLibrary.h"
-#endif // HMD_MODULE_INCLUDED
-
-const FName ADirtRiderPawn::LookUpBinding("LookUp");
-const FName ADirtRiderPawn::LookRightBinding("LookRight");
-
 #define LOCTEXT_NAMESPACE "VehiclePawn"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -131,7 +118,7 @@ void ADirtRiderPawn::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	// set up gameplay key bindings
 	check(PlayerInputComponent);
 
-	PlayerInputComponent->BindAxis("MoveForward", this, &ADirtRiderPawn::MoveForward);
+	PlayerInputComponent->BindAxis("MoveForward", this, &ADirtRiderPawn::Server_MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ADirtRiderPawn::MoveRight);
 	PlayerInputComponent->BindAxis("LookUp");
 	PlayerInputComponent->BindAxis("LookRight");
@@ -139,13 +126,16 @@ void ADirtRiderPawn::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAction("Handbrake", IE_Pressed, this, &ADirtRiderPawn::OnHandbrakePressed);
 	PlayerInputComponent->BindAction("Handbrake", IE_Released, this, &ADirtRiderPawn::OnHandbrakeReleased);
 	PlayerInputComponent->BindAction("SwitchCamera", IE_Pressed, this, &ADirtRiderPawn::OnToggleCamera);
-
-	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ADirtRiderPawn::OnResetVR); 
 }
 
-void ADirtRiderPawn::MoveForward(float Val)
+void ADirtRiderPawn::Server_MoveForward_Implementation(float Val)
 {
 	GetVehicleMovementComponent()->SetThrottleInput(Val);
+}
+
+bool ADirtRiderPawn::Server_MoveForward_Validate(float Val)
+{
+	return true;
 }
 
 void ADirtRiderPawn::MoveRight(float Val)
@@ -173,18 +163,9 @@ void ADirtRiderPawn::EnableIncarView(const bool bState, const bool bForce)
 	if ((bState != bInCarCameraActive) || ( bForce == true ))
 	{
 		bInCarCameraActive = bState;
-		
-		if (bState == true)
-		{
-			OnResetVR();
-			Camera->Deactivate();
-			InternalCamera->Activate();
-		}
-		else
-		{
+	
 			InternalCamera->Deactivate();
 			Camera->Activate();
-		}
 		
 		InCarSpeed->SetVisibility(bInCarCameraActive);
 		InCarGear->SetVisibility(bInCarCameraActive);
@@ -204,47 +185,12 @@ void ADirtRiderPawn::Tick(float Delta)
 
 	// Set the string in the incar hud
 	SetupInCarHUD();
-
-	bool bHMDActive = false;
-#if HMD_MODULE_INCLUDED
-	if ((GEngine->XRSystem.IsValid() == true) && ((GEngine->XRSystem->IsHeadTrackingAllowed() == true) || (GEngine->IsStereoscopic3D() == true)))
-	{
-		bHMDActive = true;
-	}
-#endif // HMD_MODULE_INCLUDED
-	if (bHMDActive == false)
-	{
-		if ( (InputComponent) && (bInCarCameraActive == true ))
-		{
-			FRotator HeadRotation = InternalCamera->GetRelativeRotation();
-			HeadRotation.Pitch += InputComponent->GetAxisValue(LookUpBinding);
-			HeadRotation.Yaw += InputComponent->GetAxisValue(LookRightBinding);
-			InternalCamera->SetRelativeRotation(HeadRotation);
-		}
-	}
 }
 
 void ADirtRiderPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-	bool bEnableInCar = false;
-#if HMD_MODULE_INCLUDED
-	bEnableInCar = UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled();
-#endif // HMD_MODULE_INCLUDED
-	EnableIncarView(bEnableInCar,true);
-}
-
-void ADirtRiderPawn::OnResetVR()
-{
-#if HMD_MODULE_INCLUDED
-	if (GEngine->XRSystem.IsValid())
-	{
-		GEngine->XRSystem->ResetOrientationAndPosition();
-		InternalCamera->SetRelativeLocation(InternalCameraOrigin);
-		GetController()->SetControlRotation(FRotator());
-	}
-#endif // HMD_MODULE_INCLUDED
 }
 
 void ADirtRiderPawn::UpdateHUDStrings()

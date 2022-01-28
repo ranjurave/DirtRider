@@ -85,7 +85,12 @@ public:
 	// End Actor interface
 
 	/** Handle pressing forwards */
-	void MoveForward(float Val);
+	UFUNCTION(Client, Reliable, WithValidation)
+	void Server_MoveForward(float Val);
+
+	virtual bool Server_MoveForward_Validate(float Val);
+	virtual void Server_MoveForward_Implementation(float Val);
+
 	/** Setup the strings used on the hud */
 	void SetupInCarHUD();
 
@@ -99,8 +104,6 @@ public:
 	void OnHandbrakeReleased();
 	/** Switch between cameras */
 	void OnToggleCamera();
-	/** Handle reset VR device */
-	void OnResetVR();
 
 	static const FName LookUpBinding;
 	static const FName LookRightBinding;

@@ -23,6 +23,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+
+
+
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
@@ -35,7 +38,29 @@ private:
 	UPROPERTY(EditAnywhere)
 		float MaxDrivingForce = 10000;
 
-	void MoveForward(float Value);
+	//Turning radius of car
+	UPROPERTY(EditAnywhere)
+		float MinTurnRadius = 10;
+
+	//Higher means more drag
+	UPROPERTY(EditAnywhere)
+		float DragCoefficient = 16;
+
+	//Higher means more rolling resisitance
+	UPROPERTY(EditAnywhere)
+		float RollingResistanceCoefficieant = 0.015f;
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void Server_MoveForward(float Value);
+
+	void MoveRight(float Value);
+
+	void UpdateLocationFromVelocity(float DeltaTime);
+	void ApplyRotation(float DeltaTime);
+	FVector GetAirResistance();
+	FVector GetRollingResistance();
+
 	FVector Velocity;
 	float Throttle;
+	float SteeringThrow;
 };

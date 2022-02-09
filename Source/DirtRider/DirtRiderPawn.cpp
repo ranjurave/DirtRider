@@ -119,7 +119,7 @@ void ADirtRiderPawn::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	check(PlayerInputComponent);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &ADirtRiderPawn::Server_MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &ADirtRiderPawn::MoveRight);
+	PlayerInputComponent->BindAxis("MoveRight", this, &ADirtRiderPawn::Server_MoveRight);
 	PlayerInputComponent->BindAxis("LookUp");
 	PlayerInputComponent->BindAxis("LookRight");
 
@@ -135,13 +135,23 @@ void ADirtRiderPawn::Server_MoveForward_Implementation(float Val)
 
 bool ADirtRiderPawn::Server_MoveForward_Validate(float Val)
 {
-	return true;
+	return FMath::Abs(Val) <= 1;
 }
 
-void ADirtRiderPawn::MoveRight(float Val)
+void ADirtRiderPawn::Server_MoveRight_Implementation(float Val)
 {
 	GetVehicleMovementComponent()->SetSteeringInput(Val);
 }
+
+bool ADirtRiderPawn::Server_MoveRight_Validate(float Val)
+{
+	return FMath::Abs(Val) <= 1;
+}
+
+//void ADirtRiderPawn::MoveRight(float Val)
+//{
+//	GetVehicleMovementComponent()->SetSteeringInput(Val);
+//}
 
 void ADirtRiderPawn::OnHandbrakePressed()
 {

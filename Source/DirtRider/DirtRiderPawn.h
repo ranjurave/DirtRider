@@ -88,8 +88,8 @@ public:
 	UFUNCTION(Client, Reliable, WithValidation)
 	void Server_MoveForward(float Val);
 
-	virtual bool Server_MoveForward_Validate(float Val);
-	virtual void Server_MoveForward_Implementation(float Val);
+	UFUNCTION(Client, Reliable, WithValidation)
+	void Server_MoveRight(float Val);
 
 	/** Setup the strings used on the hud */
 	void SetupInCarHUD();
